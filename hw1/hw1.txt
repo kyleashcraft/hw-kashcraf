@@ -1,0 +1,51 @@
+Problem 1
+
+Part A: Numbers 1 and 4 are acceptable behaviors in solving homeworks and projects.
+
+Part B: Numbers 2, 3, 4, and 5 are all recommended ways of writing code.
+
+Part C: 4: "Use the normal submission system provided you have grace-days available"
+
+Part D: 4: Start the next assignment sooner
+
+
+Problem 2
+
+Part A: Terminal is the only git user interface accepted and supported in this course
+
+Part B: "git add hw1q2b.cpp"
+
+Part C: Git will prompt you to add a commit message in a previously determined text editor (in my case, Sublime)
+
+
+Problem 4
+
+Final contents of mat:
+
+ 1  2  3  4
+10  6  7  8
+31 10 11 12
+
+This is because the recursive function, func1, takes the
+array, it's height, and then its width as parameters.
+From there the function recursively calls itself, 
+decreasing the number of rows until it reaches it's base
+case, where the row coordinate is 0, and returns mat[0][0].
+The recursive call is set to make the first item in the row
+below the current function call's coordinates equal to the 
+sum of the entire row above it. Therefore, once the base 
+case is reached, the first item of the first row is set 
+equal to itself (mat[0][0]), then the next line after the
+recursive function is executed, which returns 
+func2(mat[0], 4). That function call returns the sum of the
+first four items in the 0th row, 1+2+3+4 = 10. Once that 
+call is evaluated the second call frame is visited, setting
+mat[1][0] = 10, making the second row equal to '10 6 7 8',
+then summing those values in the func2 call, and setting
+mat[2][0] equal to that value (31) in the last call stack.
+One last call is made to func2, summing the integers in the
+last row with a final value of 64, but doing nothing with
+the value because the return value of the last call frame
+is not used or saved to any variable.
+
+
