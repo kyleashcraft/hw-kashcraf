@@ -1,0 +1,91 @@
+PROBLEM #1
+(a) After the 'git clone ...' command, the README.md will reflect the version
+hosted by github, not the local version.
+
+(b) After the 'touch fun_problem.txt' command, the file will not be tracked by
+git. After the echo ' "Markdown is easy" >> README.md ' command, README.md 
+will be tracked by Git, but this command will have appended a new line to the
+file that will result in a modification to the file that is not yet staged to
+be committed.
+
+(c) After this command, both README.md and fun_problem.txt will be staged for
+commit.
+
+(d) This series of commands makes a commit including the previous changes. 
+However the two proceding 'echo' commands, again modify these files and create
+changes which are not staged for commit.
+
+(e) The first command, 'git add README.md' will stage the changes to README.md
+to be committed, while the second command, 'git checkout -- fun_problem.txt',
+will remove the changes made to fun_problem.txt since the last commit. At this
+point fun_problem.txt will be an empty file since no text was added, staged
+for commit, and committed in its lifetime.
+
+(f) This command will create unstaged changes to README.md.
+
+
+PROBLEM #3
+1. A data type allowing quick retrieval of the name of a song given a playlist (or 
+album) and the track number
+  - A list, where the playlist or album given direct you to the proper list, then 
+    the track number will locate the actual song within that item. Implementation 
+    would involve an array of strings, and accessing the proper song would require
+    a subtraction of one from the desired track number to account for array 
+    indexing starting from 0. This is the best approach since it allows for quick
+    access to the desired song name based off input index. It also allows for more 
+    sensible development since the order of the songs is important, as are the 
+    items in a list.
+2. A data type to store the text of the steps of a recipe for how to bake a cake.
+  - I believe the best implementation for this data type would be a list. This is
+    because, once again, the order of instructions is incredibly important. You
+    wouldn't want to put the cake in the oven before you preheat the oven to 450. 
+    Baking instructions require following them sequentially, and this ordered 
+    nature is intrinsic to the structure of lists.
+3. A data type that associates a file extension with the possible programs that are
+   able to read that kind of file.
+  - I believe the best data structure for implementing this would be a set. This is
+    because it is far better to avoid repitition of programs that read a 
+    particular file type. Furthermore, there is no need for accessing based off
+    index or order, so a List could not bring any further benefit. Additionally 
+    this structure allows for use set mathematics, especially Union, which allows
+    for comparisons of file types accepted for different programs, assuming that
+    each set relates to the file types one particular program can handle.
+4. A data type that stores all the TV station identifications
+  - For this data type I believe a Set would be the best data structure. This
+    is because there would be no repititions of TV stations in the structure
+    which reflects the nature of TV station identifiers. Additionally, the prompt
+    doesn't stipulate a need for access by index, nor an associated station name
+    which means that no additional functionality is required that a Set does not
+    offer.
+
+
+Problem #4
+This problem is an example of a tail recursive function. When funcA is first
+passed the head of the linked list 1, 2, 3, 4, 5 the first 5 lines of funcA are
+repeatedly executed. if(in == NULL) evaluates to false every time, so can be
+ignored. Node* out is repeatedly allocated to a null node, then used to hold the
+return value of the recursive calls, which are executed all the way up until the 
+base case of in->next == NULL. At this point the stack begins to unwind, and *in
+is returned, which stores a value of 5. This then allows the rest of the funcA
+logic execute, with in->value = 4 and out->value = 5. The next line of code to
+execute is funcB(in, out), which immediately skips if statement, in2->next!=NULL,
+since in this case in2 points to funcA's out, which is a pointer to the Node at the
+end of the linked list, with a value of 5. After skipping the linked list,
+in2->next is set equal to in->1, effectively beginning the reordering of the list
+in descending as opposed to ascending order. After the last call within funcB we
+then return to funcA and evaluate the next line of code, setting in->next to NULL.
+This means that the newly ordered list now has a complete order of 5, 4, NULL.
+After setting in->next to null, out is returned, which is equivalent to 5. This 
+now brings us back to the call of funcA in which in's value is 3 and out's value
+is still 5. funcB is once again called with theses new values. This time, in funcB
+the if statement evaluates to true and funcB is called again, except with in1->value
+equal to 3 and in2->value equal to 4. In this next funcB call, in2->next IS NULL,
+since we have reached the end of our partially assembled reorder list of 5, 4, NULL.
+Thus, funcB's if statement is not executed and in1 is added as in2->next, making the
+list of nodes 5, 4, 3. funcB terminates and we are again in funcA. in->next is set
+to NULL, to ensure proper linking, and out is again returned. This process continues
+for two more funcA calls in which the node values are equal to 2 and 1, each time
+using funcB to append to the end of the newly ordered list. In the final unrolled
+call, out is returned, which still has a value equal to 5, except this time it is
+now the head of a completed descending-ordered list of 5, 4, 3, 2, 1, NULL which is
+the final output of these functions.
