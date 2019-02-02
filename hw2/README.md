@@ -1,6 +1,13 @@
 # H2 - CS104
 ### Kyle Ashcraft - ID: 9422777848
 
+
+### Compilation instructions
+
+* To compile and run code for problem #7, run `g++ -g -Wall ulliststr.cpp ulliststr_test.cpp` followed by `./a.out` in Terminal.
+
+
+
 Problem 6: For this problem I have two helper functions.
 ```void add(Node*& in, Node*& to)``` is the function that actually moves nodes from the unsorted list to either the odds or the evens, depending on which is passed as the `to` argument. The `add` function also makes use of a recursive function `void toEnd(Node*& mov)`, which recursively moves the moving pointer in `add()` to the end of the odd or even list.
 
